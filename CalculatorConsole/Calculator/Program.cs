@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -44,30 +45,30 @@ namespace Calculator
                     if (char.IsDigit(c) || c.Equals('.'))
                     {
                         chars.Add(c);
+                        continue;
                     }
-                    else
+
+                    switch (c)
                     {
-                        switch (c)
-                        {
-                            case '-':
-                                AddNumberExpression(chars);
-                                _builder.InsertSubtractExpression();
-                                break;
-                            case '+':
-                                AddNumberExpression(chars);
-                                _builder.InsertAddExpression();
-                                break;
-                            case '*':
-                                AddNumberExpression(chars);
-                                _builder.InsertMultiplicationExpression();
-                                break;
-                            case '/':
-                                AddNumberExpression(chars);
-                                _builder.InsertDivExpression();
-                                break;
-                            default:
-                                break;
-                        }
+                        case '-':
+                            AddNumberExpression(chars);
+                            _builder.InsertSubtractExpression();
+                            break;
+                        case '+':
+                            AddNumberExpression(chars);
+                            _builder.InsertAddExpression();
+                            break;
+                        case '*':
+                            AddNumberExpression(chars);
+                            _builder.InsertMultiplicationExpression();
+                            break;
+                        case '/':
+                            AddNumberExpression(chars);
+                            _builder.InsertDivExpression();
+                            break;
+                        case ' ': break;
+                        default:
+                            throw new ArgumentException($"Не допустимый символ {c}");
                     }
                 }
 
@@ -90,7 +91,13 @@ namespace Calculator
 
             var s = new string(list.ToArray());
 
-            _builder.InsertNumberExpression(double.Parse(s, System.Globalization.NumberStyles.AllowDecimalPoint));
+            if (!double.TryParse(s
+                , System.Globalization.NumberStyles.AllowDecimalPoint
+                , CultureInfo.CreateSpecificCulture("en-US")
+                , out double result))
+                throw new ArgumentException($"Не удалось распарсить строку {s}");
+
+            _builder.InsertNumberExpression(result);
 
             list.Clear();
         }
@@ -222,7 +229,9 @@ namespace Calculator
 
         private void MulDiv(IExpression expression)
         {
-            if (_root is NumberExpression)
+            if (_root is NumberExpression
+                || _root is MultiplicationExpression
+                || _root is DivisionExpression)
             {
                 AddRoot(expression);
                 return;
