@@ -230,22 +230,15 @@ namespace Calculator
         private void MulDiv(IExpression expression)
         {
             if (_root is NumberExpression
-                || _root is MultiplicationExpression
-                || _root is DivisionExpression)
+                || _root is DivisionExpression
+                || _root is MultiplicationExpression)
             {
                 AddRoot(expression);
                 return;
             }
 
-            var root = _root;
-
-            while (root.Right.Right != null)
-            {
-                root = root.Right;
-            }
-
-            expression.Left = root.Right;
-            root.Right = expression;
+            expression.Left = _root.Right;
+            _root.Right = expression;
         }
 
         public void InsertAddExpression()
