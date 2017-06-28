@@ -86,6 +86,9 @@ namespace Calculator
 
         public void Append(string expression)
         {
+            if (string.IsNullOrWhiteSpace(expression))
+                throw new NullReferenceException(nameof(expression));
+
             if (Regex.IsMatch(expression, @"^\d+\.?\d*$"))
             {
                 double result;
