@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using CalcBll.Abstract;
 using CalcBll.Concrete;
+using CalcBll.Concrete.Chains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CalcBll.IntegrationTest
@@ -21,8 +22,22 @@ namespace CalcBll.IntegrationTest
         [TestInitialize]
         public void Start()
         {
-            _calc = new Calc(new Parser(new ExpressionBuilder()), new Logger(new MyWriter()));
+            _calc = new Calc(new Parser(new ExpressionBuilder(
+                new NumChain(
+                    new AddChain(
+                        new SubChain(
+                            new MulChain(
+                                new DivChain(
+                                    null)))))
+                )), new Logger(new MyWriter()));
             _epsilon = 0.1d;
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Calculate_Alpha()
+        {
+            var d = _calc.Calculate("1a+1");
         }
 
         [TestMethod]

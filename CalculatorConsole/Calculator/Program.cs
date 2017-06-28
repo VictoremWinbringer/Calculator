@@ -1,6 +1,7 @@
 ﻿using CalcBll.Abstract;
 using CalcBll.Concrete;
 using System;
+using CalcBll.Concrete.Chains;
 
 namespace Calculator
 {
@@ -16,7 +17,13 @@ namespace Calculator
 
                 try
                 {
-                    ICalc calc = new Calc(new Parser(new ExpressionBuilder()), new Logger(new Adapter()));
+                    ICalc calc = new Calc(new Parser(new ExpressionBuilder(
+                        new NumChain(
+                            new AddChain(
+                                new SubChain(
+                                    new MulChain(
+                                        new DivChain(
+                                            null))))))), new Logger(new Adapter()));
 
                     Console.WriteLine(calc.Calculate(expression));
                 }
