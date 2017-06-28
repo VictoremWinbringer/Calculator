@@ -42,11 +42,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\Adapter.cs" />
+    <Compile Include="Concrete\Expressions\AddExpression.cs" />
+    <Compile Include="Concrete\Calc.cs" />
+    <Compile Include="Concrete\Expressions\DivisionExpression.cs" />
+    <Compile Include="Concrete\ExpressionBuilder.cs" />
+    <Compile Include="Abstract\IAdapter.cs" />
+    <Compile Include="Abstract\ICalc.cs" />
+    <Compile Include="Abstract\IExpression.cs" />
+    <Compile Include="Abstract\IExpressionBuilder.cs" />
+    <Compile Include="Abstract\ILogger.cs" />
+    <Compile Include="Abstract\IParser.cs" />
+    <Compile Include="Concrete\Logger.cs" />
+    <Compile Include="Concrete\Expressions\MultiplicationExpression.cs" />
+    <Compile Include="Concrete\Expressions\NumberExpression.cs" />
+    <Compile Include="Concrete\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Concrete\Expressions\SubtractExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
