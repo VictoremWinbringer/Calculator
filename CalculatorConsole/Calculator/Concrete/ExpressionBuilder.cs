@@ -29,7 +29,11 @@ namespace Calculator
                 return;
             }
 
+            if (_root.Right == null)
+                throw new ArgumentException("Не верное выражение !", new NullReferenceException(nameof(_root.Right)));
+
             expression.Left = _root.Right;
+
             _root.Right = expression;
         }
 
@@ -47,6 +51,7 @@ namespace Calculator
         {
             AddRoot(new SubtractExpression());
         }
+
         private void InsertDivExpression()
         {
             MulDiv(new DivisionExpression());
@@ -57,16 +62,24 @@ namespace Calculator
             var exp = new NumberExpression(value);
 
             if (_root == null)
+            {
                 _root = exp;
-
+            }
             else
             {
                 var root = _root;
 
                 while (root.Right != null)
-                {
                     root = root.Right;
-                }
+
+                if (root is NumberExpression)
+                    throw new ArgumentException("Не валидное выражение!");
+
+                if (root is DivisionExpression
+                    && value < 0.000001
+                    && value > -0.000001)
+                    throw new DivideByZeroException("Деление на ноль!");
+
                 root.Right = exp;
             }
         }
@@ -75,10 +88,12 @@ namespace Calculator
         {
             if (Regex.IsMatch(expression, @"^\d+\.?\d*$"))
             {
+                double result;
                 if (!double.TryParse(expression
-               , System.Globalization.NumberStyles.AllowDecimalPoint
-               , CultureInfo.CreateSpecificCulture("en-US")
-               , out double result))
+                                    , System.Globalization.NumberStyles.AllowDecimalPoint
+                                    , CultureInfo.CreateSpecificCulture("en-US")
+                                    , out result))
+
                     throw new ArgumentException($"Не удалось распарсить строку {expression}");
 
                 InsertNumberExpression(result);
