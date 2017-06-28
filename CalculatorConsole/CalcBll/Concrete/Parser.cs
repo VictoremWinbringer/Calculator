@@ -25,7 +25,7 @@ namespace CalcBll.Concrete
         public IExpression Parse(string expression)
         {
             if (string.IsNullOrWhiteSpace(expression))
-                throw new NullReferenceException($"{nameof(expression)} is empty");
+                throw new ArgumentNullException($"{nameof(expression)} is empty");
 
             var chars = new List<char>(100);
 

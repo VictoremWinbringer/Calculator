@@ -28,8 +28,8 @@ namespace CalcBll.IntegrationTest
                         new SubChain(
                             new MulChain(
                                 new DivChain(
-                                    null)))))
-                )), new Logger(new MyWriter()));
+                                    null))))), new ExpressionValidator()))
+                , new Logger(new MyWriter()));
             _epsilon = 0.1d;
         }
 
@@ -41,28 +41,28 @@ namespace CalcBll.IntegrationTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void Calculate_WhiteSpace()
         {
             var d = _calc.Calculate("");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotFirstNumber()
         {
             var d = _calc.Calculate("*1");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotNumberBitweenOperator()
         {
             var d = _calc.Calculate("1++1");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotLastNumber()
         {
             var d = _calc.Calculate("1+1+");
@@ -106,6 +106,15 @@ namespace CalcBll.IntegrationTest
             var d = _calc.Calculate("1+2-3*4/5 -0.6");
 
             Assert.IsTrue(Math.Abs(d) < _epsilon);
+
+        }
+
+        [TestMethod]
+        public void Calculate_All_86_2()
+        {
+            var d = _calc.Calculate("23 * 2 + 45 - 24 / 5");
+
+            Assert.IsTrue(Math.Abs(Math.Abs(d) -86.2) < _epsilon);
 
         }
     }

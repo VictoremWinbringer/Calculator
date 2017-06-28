@@ -1,4 +1,5 @@
 ﻿using CalcBll.Abstract;
+using System;
 
 namespace CalcBll.Concrete.Expressions
 {
@@ -9,7 +10,12 @@ namespace CalcBll.Concrete.Expressions
 
         public double Interpret()
         {
-            return Left.Interpret() / Right.Interpret();
+            var right = Right.Interpret();
+
+            if (Math.Abs(right) <= double.Epsilon)
+                throw new DivideByZeroException();
+
+            return Left.Interpret() / right;
         }
     }
 }

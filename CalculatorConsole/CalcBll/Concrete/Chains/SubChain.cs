@@ -25,7 +25,8 @@ namespace CalcBll.Concrete.Chains
             }
             else
             {
-                _next.Add(ref root, exp);
+                if (_next != null)
+                    _next.Add(ref root, exp);
             }
         }
     }

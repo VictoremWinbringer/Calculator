@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using CalcBll.Abstract;
-using CalcBll.Concrete.Expressions;
 using Calculator;
 
 namespace CalcBll.Concrete
@@ -13,16 +10,23 @@ namespace CalcBll.Concrete
         private readonly IExpressionChain _chain;
         private IExpression _root;
         private readonly List<string> _expressions;
+        private readonly IExpressionValidator _validator;
 
-        public ExpressionBuilder(IExpressionChain chain)
+        public ExpressionBuilder(IExpressionChain chain, IExpressionValidator validator)
         {
             _chain = chain;
             _expressions = new List<string>();
             _root = null;
+            _validator = validator;
         }
 
         public IExpression Build()
         {
+            var valid = _validator.IsValid(_expressions);
+
+            if (!valid.Item1)
+                throw new ArgumentException($"Not valid simbol {_expressions[valid.Item2]} on index {valid.Item2}");
+
             foreach (var e in _expressions)
             {
                 _chain.Add(ref _root, e);
@@ -34,13 +38,6 @@ namespace CalcBll.Concrete
         public void Append(string expression)
         {
             expression = expression?.Trim();
-
-            if (string.IsNullOrWhiteSpace(expression))
-                throw new NullReferenceException(nameof(expression));
-
-
-            if (!Regex.IsMatch(expression, @"^\d+\.?\d*$") && !Regex.IsMatch(expression, "^[-,+,*,/]$"))
-                throw new ArgumentException($"Не допустимый символ {expression}");
 
             _expressions.Add(expression);
         }

@@ -29,10 +29,7 @@ namespace CalcBll.Concrete.Chains
                     expression.Left = root;
                     root = expression;
                     return;
-                }
-
-                if (root.Right == null)
-                    throw new ArgumentException("Не верное выражение !", new NullReferenceException(nameof(root.Right)));
+                }              
 
                 expression.Left = root.Right;
 
@@ -40,7 +37,8 @@ namespace CalcBll.Concrete.Chains
             }
             else
             {
-                _next.Add(ref root, exp);
+                if (_next != null)
+                    _next.Add(ref root, exp);
             }
         }
     }

@@ -46,6 +46,7 @@
     <Compile Include="Abstract\IExpression.cs" />
     <Compile Include="Abstract\IExpressionBuilder.cs" />
     <Compile Include="Abstract\IExpressionChain.cs" />
+    <Compile Include="Abstract\IExpressionValidator.cs" />
     <Compile Include="Abstract\ILogger.cs" />
     <Compile Include="Abstract\IParser.cs" />
     <Compile Include="Concrete\Adapter.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Concrete\Expressions\MultiplicationExpression.cs" />
     <Compile Include="Concrete\Expressions\NumberExpression.cs" />
     <Compile Include="Concrete\Expressions\SubtractExpression.cs" />
+    <Compile Include="Concrete\ExpressionValidator.cs" />
     <Compile Include="Concrete\Logger.cs" />
     <Compile Include="Concrete\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,7 +8,7 @@ using CalcBll.Concrete.Expressions;
 
 namespace CalcBll.Concrete.Chains
 {
-  public  class AddChain:IExpressionChain
+    public class AddChain : IExpressionChain
     {
         private readonly IExpressionChain _next;
 
@@ -23,11 +23,12 @@ namespace CalcBll.Concrete.Chains
                 var expression = new AddExpression();
                 expression.Left = root;
                 root = expression;
-               
+
             }
             else
             {
-                _next.Add(ref root, exp);
+                if (_next != null)
+                    _next.Add(ref root, exp);
             }
         }
     }

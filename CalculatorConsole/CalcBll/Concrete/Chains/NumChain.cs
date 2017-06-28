@@ -36,21 +36,14 @@ namespace CalcBll.Concrete.Chains
 
                     while (_root.Right != null)
                         _root = _root.Right;
-
-                    if (_root is NumberExpression)
-                        throw new ArgumentException("Не валидное выражение!");
-
-                    if (_root is DivisionExpression
-                        && value < 0.000001
-                        && value > -0.000001)
-                        throw new DivideByZeroException("Деление на ноль!");
-
+                    
                     _root.Right = expression;
                 }
             }
             else
             {
-                _next.Add(ref root, exp);
+                if (_next != null)
+                    _next.Add(ref root, exp);
             }
         }
     }
