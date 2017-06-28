@@ -17,7 +17,6 @@ namespace Calculator
         {
             try
             {
-
                 var exp = _parser.Parse(expression);
 
                 return exp.Interpret();

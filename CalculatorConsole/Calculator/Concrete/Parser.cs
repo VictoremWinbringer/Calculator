@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Calculator
 {
@@ -21,6 +22,9 @@ namespace Calculator
 
         public IExpression Parse(string expression)
         {
+            if (string.IsNullOrWhiteSpace(expression))
+                throw new NullReferenceException($"{nameof(expression)} is empty");
+
             var chars = new List<char>(100);
 
             foreach (char c in expression)
