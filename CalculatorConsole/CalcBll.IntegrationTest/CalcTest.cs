@@ -34,21 +34,21 @@ namespace CalcBll.IntegrationTest
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Calculate_VrongOrder()
+        public void Calculate_VrongOrderNotFirstNumber()
         {
             var d = _calc.Calculate("*1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Calculate_VrongOrder2()
+        public void Calculate_VrongOrderNotNumberBitweenOperator()
         {
             var d = _calc.Calculate("1++1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Calculate_VrongOrder3()
+        public void Calculate_VrongOrderNotLastNumber()
         {
             var d = _calc.Calculate("1+1+");
         }
