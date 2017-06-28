@@ -16,7 +16,6 @@ namespace Calculator
 
                 try
                 {
-
                     ICalc calc = new Calc(new Parser(new ExpressionBuilder()), new Logger(new Adapter()));
 
                     Console.WriteLine(calc.Calculate(expression));
