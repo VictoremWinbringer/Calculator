@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using CalcBll.Abstract;
+using Calculator;
 
-namespace Calculator
+namespace CalcBll.Concrete
 {
-    sealed class Parser : IParser
+  public  sealed class Parser : IParser
     {
         IExpressionBuilder _builder;
         public Parser(IExpressionBuilder builder)

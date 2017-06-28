@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using CalcBll.Abstract;
+using CalcBll.Concrete.Expressions;
+using Calculator;
 
-namespace Calculator
+namespace CalcBll.Concrete
 {
-    sealed class ExpressionBuilder : IExpressionBuilder
+  public  sealed class ExpressionBuilder : IExpressionBuilder
     {
         private volatile IExpression _root = null;
 

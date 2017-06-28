@@ -1,6 +1,7 @@
 ﻿using System;
+using CalcBll.Abstract;
 
-namespace Calculator
+namespace CalcBll.Concrete
 {
     sealed class Adapter : IAdapter
     {

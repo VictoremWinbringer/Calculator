@@ -1,6 +1,6 @@
-﻿namespace Calculator
+﻿namespace CalcBll.Abstract
 {
-    interface IParser
+ public interface IParser
     {
         IExpression Parse(string expression);
     }

@@ -1,6 +1,6 @@
-﻿namespace Calculator
+﻿namespace CalcBll.Abstract
 {
-    interface ICalc
+  public interface ICalc
     {
         double Calculate(string expression);
     }

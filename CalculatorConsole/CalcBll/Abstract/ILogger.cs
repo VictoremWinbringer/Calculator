@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Calculator
+namespace CalcBll.Abstract
 {
-    interface ILogger
+  public  interface ILogger
     {
         void Log(string message, Exception ex);
     }

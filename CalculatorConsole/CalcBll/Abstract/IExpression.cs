@@ -1,6 +1,6 @@
-﻿namespace Calculator
+﻿namespace CalcBll.Abstract
 {
-    interface IExpression
+    public interface IExpression
     {
         double Interpret();
 

@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{98BC2CC4-3A87-4953-9528-AB1E31DB60AE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Calculator</RootNamespace>
-    <AssemblyName>Calculator</AssemblyName>
+    <ProjectGuid>{7E9464B7-D133-4813-83ED-DDD58937F657}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CalcBll</RootNamespace>
+    <AssemblyName>CalcBll</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,18 +41,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapter.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Abstract\IAdapter.cs" />
+    <Compile Include="Abstract\ICalc.cs" />
+    <Compile Include="Abstract\IExpression.cs" />
+    <Compile Include="Abstract\IExpressionBuilder.cs" />
+    <Compile Include="Abstract\ILogger.cs" />
+    <Compile Include="Abstract\IParser.cs" />
+    <Compile Include="Concrete\Adapter.cs" />
+    <Compile Include="Concrete\Calc.cs" />
+    <Compile Include="Concrete\ExpressionBuilder.cs" />
+    <Compile Include="Concrete\Expressions\AddExpression.cs" />
+    <Compile Include="Concrete\Expressions\DivisionExpression.cs" />
+    <Compile Include="Concrete\Expressions\MultiplicationExpression.cs" />
+    <Compile Include="Concrete\Expressions\NumberExpression.cs" />
+    <Compile Include="Concrete\Expressions\SubtractExpression.cs" />
+    <Compile Include="Concrete\Logger.cs" />
+    <Compile Include="Concrete\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CalcBll\CalcBll.csproj">
-      <Project>{7e9464b7-d133-4813-83ed-ddd58937f657}</Project>
-      <Name>CalcBll</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

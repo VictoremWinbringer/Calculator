@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
+using CalcBll.Abstract;
 
-namespace Calculator
+namespace CalcBll.Concrete
 {
-    sealed class Logger : ILogger
+   public sealed class Logger : ILogger
     {
         private readonly IAdapter _adapter;
 

@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿using CalcBll.Abstract;
+
+namespace CalcBll.Concrete.Expressions
 {
     class AddExpression : IExpression
     {

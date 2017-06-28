@@ -1,8 +1,9 @@
 ﻿using System;
+using CalcBll.Abstract;
 
-namespace Calculator
+namespace CalcBll.Concrete
 {
-    sealed class Calc:ICalc
+   public sealed class Calc:ICalc
     {
         private readonly IParser _parser;
         private readonly ILogger _logger;
