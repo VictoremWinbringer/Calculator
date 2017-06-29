@@ -1,10 +1,11 @@
 ﻿using CalcBll.Abstract;
 
-namespace Calculator
+namespace CalcBll.Abstract
 {
   public  interface IExpressionBuilder
     {
         void Append(string expression);
         IExpression Build();
+        void Append(IExpression expression);
     }
 }

@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using CalcBll.Abstract;
-using Calculator;
 
 namespace CalcBll.Concrete
 {
-  public  sealed class Parser : IParser
+    public sealed class Parser : IParser
     {
         IExpressionBuilder _builder;
-        public Parser(IExpressionBuilder builder)
+        IExpressionValidator _validator;
+
+        public Parser(IExpressionBuilder builder, IExpressionValidator validator)
         {
             _builder = builder;
+            _validator = validator;
         }
         private bool TryAddChar(char c, List<char> chars)
         {
@@ -27,6 +29,8 @@ namespace CalcBll.Concrete
             if (string.IsNullOrWhiteSpace(expression))
                 throw new ArgumentNullException($"{nameof(expression)} is empty");
 
+            var expressions = new List<string>();
+
             var chars = new List<char>(100);
 
             foreach (char c in expression)
@@ -37,16 +41,24 @@ namespace CalcBll.Concrete
                 if (c.Equals(' '))
                     continue;
 
-                _builder.Append(new string(chars.ToArray()));
+                expressions.Add(new string(chars.ToArray()));
 
                 chars.Clear();
 
-                _builder.Append(c.ToString());
+                expressions.Add(c.ToString());
 
             }
 
             if (chars.Count > 0)
-                _builder.Append(new string(chars.ToArray()));
+                expressions.Add(new string(chars.ToArray()));
+
+            var valid = _validator.IsValid(expressions);
+
+            if (!valid.Item1)
+                throw new ArgumentException($"Not valid simbol {expressions[valid.Item2]} on index {valid.Item2}");
+
+            foreach (var e in expressions)
+                _builder.Append(e);
 
             return _builder.Build();
         }

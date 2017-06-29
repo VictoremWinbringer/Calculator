@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CalcBll.Abstract;
 using CalcBll.Concrete.Expressions;
 
@@ -16,19 +12,22 @@ namespace CalcBll.Concrete.Chains
         {
             _next = next;
         }
-        public void Add(ref IExpression root, string exp)
+        public void Add(ref int priority,string exp,IExpressionBuilder builder)
         {
             if (exp.Equals("+", StringComparison.Ordinal))
             {
-                var expression = new AddExpression();
-                expression.Left = root;
-                root = expression;
+                priority++;
 
+                var expression = new AddExpression();
+
+                expression.Priority = priority + 3000;
+
+                builder.Append(expression);
             }
             else
             {
                 if (_next != null)
-                    _next.Add(ref root, exp);
+                    _next.Add(ref priority, exp, builder);
             }
         }
     }

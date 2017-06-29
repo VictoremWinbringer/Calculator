@@ -14,6 +14,7 @@ namespace CalcBll.IntegrationTest
             Debug.Write(message);
         }
     }
+
     [TestClass]
     public class CalcTest
     {
@@ -28,7 +29,7 @@ namespace CalcBll.IntegrationTest
                         new SubChain(
                             new MulChain(
                                 new DivChain(
-                                    null))))), new ExpressionValidator()))
+                                    null)))))), new ExpressionValidator())
                 , new Logger(new MyWriter()));
             _epsilon = 0.1d;
         }

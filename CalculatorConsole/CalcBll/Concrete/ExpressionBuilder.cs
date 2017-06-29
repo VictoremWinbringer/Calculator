@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CalcBll.Abstract;
-using Calculator;
 
 namespace CalcBll.Concrete
 {
@@ -10,26 +9,20 @@ namespace CalcBll.Concrete
         private readonly IExpressionChain _chain;
         private IExpression _root;
         private readonly List<string> _expressions;
-        private readonly IExpressionValidator _validator;
 
-        public ExpressionBuilder(IExpressionChain chain, IExpressionValidator validator)
+        public ExpressionBuilder(IExpressionChain chain)
         {
             _chain = chain;
             _expressions = new List<string>();
             _root = null;
-            _validator = validator;
         }
 
         public IExpression Build()
         {
-            var valid = _validator.IsValid(_expressions);
-
-            if (!valid.Item1)
-                throw new ArgumentException($"Not valid simbol {_expressions[valid.Item2]} on index {valid.Item2}");
-
+            var priority = 0;
             foreach (var e in _expressions)
             {
-                _chain.Add(ref _root, e);
+                _chain.Add(ref priority, e, this);
             }
 
             return _root;
@@ -40,6 +33,36 @@ namespace CalcBll.Concrete
             expression = expression?.Trim();
 
             _expressions.Add(expression);
+        }
+
+        public void Append(IExpression expression)
+        {
+            if (_root == null || _root.Priority <= expression.Priority)
+            {
+                expression.Left = _root;
+                _root = expression;
+            }
+            else
+            {
+                var res = Sort(_root, expression);
+            }
+        }
+
+        private bool Sort(IExpression root, IExpression value)
+        {
+            if(root.Right == null)
+            {
+                root.Right = value;
+                return true;
+            }
+            else if(root.Right.Priority<=value.Priority)
+            {
+                value.Left = root.Right;
+                root.Right = value;
+                return true;
+            }
+
+            return Sort(root.Right, value);
         }
     }
 }

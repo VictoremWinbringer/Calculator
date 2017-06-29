@@ -12,21 +12,23 @@ namespace CalcBll.Concrete.Chains
         {
             _next = next;
         }
-        public void Add(ref IExpression root, string exp)
+
+        public void Add(ref int priority, string exp, IExpressionBuilder builder)
         {
             if (exp.Equals("-", StringComparison.Ordinal))
             {
+                priority++;
+
                 var expression = new SubtractExpression();
 
-                expression.Left = root;
+                expression.Priority = priority + 3000;
 
-                root = expression;
-
+                builder.Append(expression);
             }
             else
             {
                 if (_next != null)
-                    _next.Add(ref root, exp);
+                    _next.Add(ref priority, exp, builder);
             }
         }
     }

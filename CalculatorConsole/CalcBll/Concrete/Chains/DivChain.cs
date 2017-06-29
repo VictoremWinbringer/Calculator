@@ -16,29 +16,22 @@ namespace CalcBll.Concrete.Chains
         {
             _next = next;
         }
-        public void Add(ref IExpression root, string exp)
+        public void Add(ref int priority, string exp, IExpressionBuilder builder)
         {
             if (exp.Equals("/", StringComparison.Ordinal))
             {
+                priority++;
+
                 var expression = new DivisionExpression();
-               
-                if (root is NumberExpression
-                    || root is DivisionExpression
-                    || root is MultiplicationExpression)
-                {
-                    expression.Left = root;
-                    root = expression;
-                    return;
-                }              
 
-                expression.Left = root.Right;
+                expression.Priority = priority + 2000;
 
-                root.Right = expression;
+                builder.Append(expression);
             }
             else
             {
                 if (_next != null)
-                    _next.Add(ref root, exp);
+                    _next.Add(ref priority, exp, builder);
             }
         }
     }

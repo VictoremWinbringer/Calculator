@@ -23,8 +23,9 @@ namespace Calculator
                                 new SubChain(
                                     new MulChain(
                                         new DivChain(
-                                            null))))),new ExpressionValidator()
-                        )), new Logger(new Adapter()));
+                                            null))))))
+                                            , new ExpressionValidator())
+                                            , new Logger(new Adapter()));
 
                     Console.WriteLine(calc.Calculate(expression));
                 }

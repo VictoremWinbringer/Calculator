@@ -18,32 +18,25 @@ namespace CalcBll.Concrete.Chains
         {
             _next = next;
         }
-        public void Add(ref IExpression root, string exp)
+
+        public void Add(ref int priority, string exp, IExpressionBuilder builder)
         {
             if (Regex.IsMatch(exp, @"^\d+\.?\d*$"))
             {
+                priority++;
+
                 var value = double.Parse(exp, CultureInfo.CreateSpecificCulture("en-US"));
 
                 var expression = new NumberExpression(value);
 
-                if (root == null)
-                {
-                    root = expression;
-                }
-                else
-                {
-                    var _root = root;
+                expression.Priority = priority;
 
-                    while (_root.Right != null)
-                        _root = _root.Right;
-                    
-                    _root.Right = expression;
-                }
+                builder.Append(expression);
             }
             else
             {
                 if (_next != null)
-                    _next.Add(ref root, exp);
+                    _next.Add(ref priority, exp, builder);
             }
         }
     }

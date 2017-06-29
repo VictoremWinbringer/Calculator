@@ -1,4 +1,5 @@
-﻿using CalcBll.Abstract;
+﻿using System;
+using CalcBll.Abstract;
 
 namespace CalcBll.Concrete.Expressions
 {
@@ -6,6 +7,7 @@ namespace CalcBll.Concrete.Expressions
     {
         public IExpression Left { get; set; }
         public IExpression Right { get; set; }
+        public int Priority { get; set; }
 
         public double Interpret()
         {

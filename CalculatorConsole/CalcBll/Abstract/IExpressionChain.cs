@@ -8,6 +8,6 @@ namespace CalcBll.Abstract
 {
     public interface IExpressionChain
     {
-        void Add(ref IExpression root, string expression);
+        void Add(ref int priority, string exp, IExpressionBuilder builder);
     }
 }

@@ -5,8 +5,10 @@ namespace CalcBll.Concrete.Expressions
 {
     class DivisionExpression : IExpression
     {
+        
         public IExpression Left { get; set; }
         public IExpression Right { get; set; }
+        public int Priority { get; set; }
 
         public double Interpret()
         {
