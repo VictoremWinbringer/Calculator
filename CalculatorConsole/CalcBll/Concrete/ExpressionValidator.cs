@@ -21,12 +21,9 @@ namespace CalcBll.Concrete
             {
                 if (string.IsNullOrWhiteSpace(exp)
                     || !IsOperation(exp)
-                    || IsExcess(exp, stack.Count, list.Count))
-                    return new Tuple<bool, int>(false, stack.Count);
-
-                if (stack.Count > 0
-                    && (IsCopy(stack, exp, "^[-,+,*,/]$")
-                    || IsCopy(stack, exp, @"^\d+\.?\d*$")))
+                    || IsExcess(exp, stack.Count, list.Count)
+                    || (stack.Count > 0
+                    && (IsCopy(stack, exp, "^[-,+,*,/]$") || IsCopy(stack, exp, @"^\d+\.?\d*$"))))
                     return new Tuple<bool, int>(false, stack.Count);
 
                 if (CheckIsOpen(stack, exp, ref openCount))
@@ -84,11 +81,8 @@ namespace CalcBll.Concrete
 
         bool IsCopy(Stack<string> stack, string exp, string pattern)
         {
-            if (Regex.IsMatch(exp, pattern)
-                && Regex.IsMatch(stack.Peek(), pattern))
-                return true;
-
-            return false;
+            return Regex.IsMatch(exp, pattern)
+                && Regex.IsMatch(stack.Peek(), pattern);
         }
     }
 }
