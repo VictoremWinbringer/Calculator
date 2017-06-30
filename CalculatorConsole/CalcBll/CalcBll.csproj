@@ -51,9 +51,11 @@
     <Compile Include="Abstract\IParser.cs" />
     <Compile Include="Concrete\Adapter.cs" />
     <Compile Include="Concrete\Calc.cs" />
+    <Compile Include="Concrete\Chains\ClosingParenthesisChain.cs" />
     <Compile Include="Concrete\Chains\DivChain.cs" />
     <Compile Include="Concrete\Chains\MulChain.cs" />
     <Compile Include="Concrete\Chains\NumChain.cs" />
+    <Compile Include="Concrete\Chains\OpeningParenthesisChain.cs" />
     <Compile Include="Concrete\Chains\SubChain.cs" />
     <Compile Include="Concrete\Chains\AddChain.cs" />
     <Compile Include="Concrete\ExpressionBuilder.cs" />

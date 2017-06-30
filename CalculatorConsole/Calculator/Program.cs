@@ -11,19 +11,21 @@ namespace Calculator
         {
             while (true)
             {
-                Console.WriteLine("Введите выражение. Поддерживаються только -, +, /,* без скобок, без знака. В качестве десятичного разделителя используеться точка.");
+                Console.WriteLine("Введите выражение. Поддерживаються только -, +, /,*  без знака. В качестве десятичного разделителя используеться точка.");
 
                 string expression = Console.ReadLine();
 
                 try
                 {
                     ICalc calc = new Calc(new Parser(new ExpressionBuilder(
-                        new NumChain(
+                      new OpeningParenthesisChain(
+                          new ClosingParenthesisChain(
+                              new NumChain(
                             new AddChain(
                                 new SubChain(
                                     new MulChain(
                                         new DivChain(
-                                            null))))))
+                                            null))))))))
                                             , new ExpressionValidator())
                                             , new Logger(new Adapter()));
 

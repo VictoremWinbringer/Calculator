@@ -41,7 +41,8 @@ namespace CalcBll.Concrete
                 if (c.Equals(' '))
                     continue;
 
-                expressions.Add(new string(chars.ToArray()));
+                if (chars.Count > 0)
+                    expressions.Add(new string(chars.ToArray()));
 
                 chars.Clear();
 
