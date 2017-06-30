@@ -10,52 +10,85 @@ namespace CalcBll.Concrete
     {
         public Tuple<bool, int> IsValid(IEnumerable<string> expressions)
         {
-            int i = 0;
-
             var list = expressions.ToList();
-
-            var countOpen = list.Count(x => x == "(");
-            var countClose = list.Count(x => x == "(");
-
-            if (countClose != countOpen)
-                return new Tuple<bool, int>(false, 0);
 
             Stack<string> stack = new Stack<string>(100);
 
+            int openCount = 0;
+            int closedCount = 0;
+
             foreach (var exp in list)
             {
-                if (string.IsNullOrWhiteSpace(exp))
-                    return new Tuple<bool, int>(false, i);
+                if (string.IsNullOrWhiteSpace(exp)
+                    || !IsOperation(exp)
+                    || IsExcess(exp, stack.Count, list.Count))
+                    return new Tuple<bool, int>(false, stack.Count);
 
-                if (!Regex.IsMatch(exp, @"^\d+\.?\d*$") && !Regex.IsMatch(exp, "^[-,+,*,/,),(]$"))
-                    return new Tuple<bool, int>(false, i);
+                if (stack.Count > 0
+                    && (IsCopy(stack, exp, "^[-,+,*,/]$")
+                    || IsCopy(stack, exp, @"^\d+\.?\d*$")))
+                    return new Tuple<bool, int>(false, stack.Count);
 
-                if (Regex.IsMatch(exp, "^[-,+,*,/]$")
-                    && (i == 0
-                    || i == list.Count - 1
-                    || Regex.IsMatch(stack.Peek(), "^[-,+,*,/]$")
-                    ))
-                    return new Tuple<bool, int>(false, i);
+                if (CheckIsOpen(stack, exp, ref openCount))
+                    return new Tuple<bool, int>(false, stack.Count);
 
-                if (Regex.IsMatch(exp, @"^\d+\.?\d*$")
-                    && i > 0
-                    && Regex.IsMatch(stack.Peek(), @"^\d+\.?\d*$"))
-                    return new Tuple<bool, int>(false, i);
-
-                if (exp.Equals("(", StringComparison.Ordinal)
-                    && Regex.IsMatch(stack.Peek(), @"^\d+\.?\d*$"))
-                    return new Tuple<bool, int>(false, i);
-
-                if (exp.Equals(")", StringComparison.Ordinal)
-                    && Regex.IsMatch(stack.Peek(), "^[-,+,*,/]$"))
-                    return new Tuple<bool, int>(false, i);
+                if (CheckIsClose(stack, exp, ref closedCount))
+                    return new Tuple<bool, int>(false, stack.Count);
 
                 stack.Push(exp);
-
-                i++;
             }
 
+            if (openCount != closedCount)
+                return new Tuple<bool, int>(false, 0);
+
             return new Tuple<bool, int>(true, 0);
+        }
+
+        bool IsExcess(string exp, int index, int totalCount)
+        {
+            return Regex.IsMatch(exp, "^[-,+,*,/]$")
+                && (index == 0
+                || index == totalCount - 1);
+        }
+
+        bool IsOperation(string exp)
+        {
+            return Regex.IsMatch(exp, @"^\d+\.?\d*$") || Regex.IsMatch(exp, "^[-,+,*,/,),(]$");
+        }
+
+        bool CheckIsClose(Stack<string> stack, string exp, ref int count)
+        {
+            if (exp.Equals(")", StringComparison.Ordinal))
+            {
+                count++;
+
+                return stack.Count > 0
+                    && (stack.Peek().Equals("(", StringComparison.Ordinal)
+                    || Regex.IsMatch(stack.Peek(), "^[-,+,*,/]$"));
+            }
+
+            return false;
+        }
+
+        bool CheckIsOpen(Stack<string> stack, string exp, ref int count)
+        {
+            if (exp.Equals("(", StringComparison.Ordinal))
+            {
+                count++;
+
+                return stack.Count > 0 && Regex.IsMatch(stack.Peek(), @"^\d+\.?\d*$");
+            }
+
+            return false;
+        }
+
+        bool IsCopy(Stack<string> stack, string exp, string pattern)
+        {
+            if (Regex.IsMatch(exp, pattern)
+                && Regex.IsMatch(stack.Peek(), pattern))
+                return true;
+
+            return false;
         }
     }
 }
