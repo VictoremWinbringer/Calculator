@@ -44,25 +44,26 @@ namespace CalcBll.Concrete
             }
             else
             {
-                var res = Sort(_root, expression);
+               Sort(_root, expression);
             }
         }
 
-        private bool Sort(IExpression root, IExpression value)
+        private void Sort(IExpression root, IExpression value)
         {
-            if(root.Right == null)
+            if (root.Right == null)
             {
                 root.Right = value;
-                return true;
             }
-            else if(root.Right.Priority<=value.Priority)
+            else if (root.Right.Priority <= value.Priority)
             {
                 value.Left = root.Right;
                 root.Right = value;
-                return true;
             }
+            else
+            {
 
-            return Sort(root.Right, value);
+                Sort(root.Right, value);
+            }
         }
     }
 }
