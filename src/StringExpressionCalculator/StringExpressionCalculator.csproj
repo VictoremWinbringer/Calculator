@@ -49,6 +49,7 @@
     <Compile Include="Abstract\IExpressionValidator.cs" />
     <Compile Include="Abstract\ILogger.cs" />
     <Compile Include="Abstract\IParser.cs" />
+    <Compile Include="Concrete\ConsoleWriter.cs" />
     <Compile Include="Concrete\FileWriter.cs" />
     <Compile Include="Concrete\Calculator.cs" />
     <Compile Include="Concrete\Chains\ClosingParenthesisChain.cs" />

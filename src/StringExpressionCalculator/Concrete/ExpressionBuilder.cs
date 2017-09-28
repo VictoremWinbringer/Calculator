@@ -19,12 +19,16 @@ namespace StringExpressionCalculator.Concrete
         public IExpression Build()
         {
             var priority = 0;
+
             foreach (var e in _expressions)
             {
                 _chain.Add(ref priority, e, this);
             }
+            var temp = _root;
 
-            return _root;
+            _root = null;
+
+            return temp;
         }
 
         public void Append(string expression)
@@ -43,7 +47,7 @@ namespace StringExpressionCalculator.Concrete
             }
             else
             {
-               Sort(_root, expression);
+                Sort(_root, expression);
             }
         }
 
@@ -60,7 +64,6 @@ namespace StringExpressionCalculator.Concrete
             }
             else
             {
-
                 Sort(root.Right, value);
             }
         }

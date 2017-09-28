@@ -5,7 +5,7 @@ using StringExpressionCalculator.Abstract;
 using StringExpressionCalculator.Concrete;
 using StringExpressionCalculator.Concrete.Chains;
 
-namespace CalcBll.Tests
+namespace Calculator.Test
 {
     class MyWriter : IWriter
     {
@@ -16,14 +16,14 @@ namespace CalcBll.Tests
     }
 
     [TestClass]
-    public class CalcTest
+    public class CalculatorShould
     {
         private ICalculator _calc;
         private double _epsilon;
         [TestInitialize]
         public void Start()
         {
-            _calc = new Calculator(new Parser(new ExpressionBuilder(
+            _calc = new StringExpressionCalculator.Concrete.Calculator(new Parser(new ExpressionBuilder(
                 new NumChain(
                     new AddChain(
                         new SubChain(

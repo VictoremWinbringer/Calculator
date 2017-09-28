@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CalcBll\StringExpressionCalculator.csproj">
+    <ProjectReference Include="..\StringExpressionCalculator\StringExpressionCalculator.csproj">
       <Project>{7e9464b7-d133-4813-83ed-ddd58937f657}</Project>
       <Name>StringExpressionCalculator</Name>
     </ProjectReference>

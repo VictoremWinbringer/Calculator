@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "src\Calculator\Calculator.csproj", "{98BC2CC4-3A87-4953-9528-AB1E31DB60AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExpressionCalculator", "src\CalcBll\StringExpressionCalculator.csproj", "{7E9464B7-D133-4813-83ED-DDD58937F657}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringExpressionCalculator", "src\StringExpressionCalculator\StringExpressionCalculator.csproj", "{7E9464B7-D133-4813-83ED-DDD58937F657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcBll.Test", "tests\CalcBll.IntegrationTest\CalcBll.Test.csproj", "{5AD482B7-FAAA-4FA7-837E-BF808D7A43FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Test", "tests\Calculator.Test\Calculator.Test.csproj", "{5AD482B7-FAAA-4FA7-837E-BF808D7A43FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CD7EAE8F-7AA5-4630-A7E5-FEA19B6EA233}"
 EndProject

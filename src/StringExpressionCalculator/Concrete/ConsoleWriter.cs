@@ -1,9 +1,9 @@
 ﻿using System;
 using StringExpressionCalculator.Abstract;
 
-namespace Calculator
+namespace StringExpressionCalculator.Concrete
 {
-    sealed class ConsoleWriter : IWriter
+    public sealed class ConsoleWriter : IWriter
     {
         public void Write(string message)
         {
