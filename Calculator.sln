@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{98BC2CC4-3A87-4953-9528-AB1E31DB60AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "src\Calculator\Calculator.csproj", "{98BC2CC4-3A87-4953-9528-AB1E31DB60AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcBll", "CalcBll\CalcBll.csproj", "{7E9464B7-D133-4813-83ED-DDD58937F657}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcBll", "src\CalcBll\CalcBll.csproj", "{7E9464B7-D133-4813-83ED-DDD58937F657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcBll.IntegrationTest", "CalcBll.IntegrationTest\CalcBll.IntegrationTest.csproj", "{5AD482B7-FAAA-4FA7-837E-BF808D7A43FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcBll.Test", "tests\CalcBll.IntegrationTest\CalcBll.Test.csproj", "{5AD482B7-FAAA-4FA7-837E-BF808D7A43FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CD7EAE8F-7AA5-4630-A7E5-FEA19B6EA233}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3F83CA74-80EB-4376-A26E-E3D6E70868F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +34,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98BC2CC4-3A87-4953-9528-AB1E31DB60AE} = {CD7EAE8F-7AA5-4630-A7E5-FEA19B6EA233}
+		{7E9464B7-D133-4813-83ED-DDD58937F657} = {CD7EAE8F-7AA5-4630-A7E5-FEA19B6EA233}
+		{5AD482B7-FAAA-4FA7-837E-BF808D7A43FC} = {3F83CA74-80EB-4376-A26E-E3D6E70868F4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35C88758-CB4F-4691-B8EE-AC4926176A3B}
 	EndGlobalSection
 EndGlobal

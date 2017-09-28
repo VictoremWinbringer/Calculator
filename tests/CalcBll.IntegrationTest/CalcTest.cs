@@ -5,7 +5,7 @@ using CalcBll.Concrete;
 using CalcBll.Concrete.Chains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CalcBll.IntegrationTest
+namespace CalcBll.Tests
 {
     class MyWriter : IAdapter
     {
@@ -38,35 +38,35 @@ namespace CalcBll.IntegrationTest
         [ExpectedException(typeof(ArgumentException))]
         public void Calculate_Alpha()
         {
-            var d = _calc.Calculate("1a+1");
+             _calc.Calculate("1a+1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Calculate_WhiteSpace()
         {
-            var d = _calc.Calculate("");
+            _calc.Calculate("");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotFirstNumber()
         {
-            var d = _calc.Calculate("*1");
+            _calc.Calculate("*1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotNumberBitweenOperator()
         {
-            var d = _calc.Calculate("1++1");
+             _calc.Calculate("1++1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotLastNumber()
         {
-            var d = _calc.Calculate("1+1+");
+             _calc.Calculate("1+1+");
         }
 
         [TestMethod]
