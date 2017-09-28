@@ -1,14 +1,14 @@
 ﻿using System;
-using CalcBll.Abstract;
+using StringExpressionCalculator.Abstract;
 
-namespace CalcBll.Concrete
+namespace StringExpressionCalculator.Concrete
 {
-   public sealed class Calc:ICalc
+   public sealed class Calculator:ICalculator
     {
         private readonly IParser _parser;
         private readonly ILogger _logger;
 
-        public Calc(IParser parser, ILogger logger)
+        public Calculator(IParser parser, ILogger logger)
         {
             _parser = parser;
             _logger = logger;

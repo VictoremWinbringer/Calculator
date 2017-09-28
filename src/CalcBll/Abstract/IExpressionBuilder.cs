@@ -1,6 +1,4 @@
-﻿using CalcBll.Abstract;
-
-namespace CalcBll.Abstract
+﻿namespace StringExpressionCalculator.Abstract
 {
   public  interface IExpressionBuilder
     {

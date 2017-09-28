@@ -1,7 +1,7 @@
-﻿using CalcBll.Abstract;
-using System;
+﻿using System;
+using StringExpressionCalculator.Abstract;
 
-namespace CalcBll.Concrete.Expressions
+namespace StringExpressionCalculator.Concrete.Expressions
 {
     class DivisionExpression : IExpression
     {

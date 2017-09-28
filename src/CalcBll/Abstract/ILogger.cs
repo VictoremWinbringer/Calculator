@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CalcBll.Abstract
+namespace StringExpressionCalculator.Abstract
 {
   public  interface ILogger
     {

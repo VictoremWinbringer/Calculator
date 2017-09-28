@@ -1,7 +1,7 @@
-﻿using CalcBll.Abstract;
-using CalcBll.Concrete;
-using System;
-using CalcBll.Concrete.Chains;
+﻿using System;
+using StringExpressionCalculator.Abstract;
+using StringExpressionCalculator.Concrete;
+using StringExpressionCalculator.Concrete.Chains;
 
 namespace Calculator
 {
@@ -10,7 +10,7 @@ namespace Calculator
         static void Main(string[] args)
         {
 
-            ICalc calc = new Calc(new Parser(new ExpressionBuilder(
+            ICalculator calc = new StringExpressionCalculator.Concrete.Calculator(new Parser(new ExpressionBuilder(
                         new OpeningParenthesisChain(
                             new ClosingParenthesisChain(
                                 new NumChain(
@@ -20,7 +20,7 @@ namespace Calculator
                                                 new DivChain(
                                                     null))))))))
                     , new ExpressionValidator())
-                , new Logger(new Adapter()));
+                , new Logger(new ConsoleWriter()));
 
             Console.WriteLine("Введите выражение. Поддерживаються только -, +, /, *  без знака. В качестве десятичного разделителя используеться точка.");
 

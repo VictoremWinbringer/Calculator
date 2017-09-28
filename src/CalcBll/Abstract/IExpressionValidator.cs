@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CalcBll.Abstract
+namespace StringExpressionCalculator.Abstract
 {
     public interface IExpressionValidator
     {

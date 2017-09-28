@@ -1,9 +1,9 @@
 ﻿using System;
-using CalcBll.Abstract;
+using StringExpressionCalculator.Abstract;
 
-namespace CalcBll.Concrete
+namespace Calculator
 {
-    sealed class Adapter : IAdapter
+    sealed class ConsoleWriter : IWriter
     {
         public void Write(string message)
         {

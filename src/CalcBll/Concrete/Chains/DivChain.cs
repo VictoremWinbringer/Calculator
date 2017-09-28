@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalcBll.Abstract;
-using CalcBll.Concrete.Expressions;
+using StringExpressionCalculator.Abstract;
+using StringExpressionCalculator.Concrete.Expressions;
 
-namespace CalcBll.Concrete.Chains
+namespace StringExpressionCalculator.Concrete.Chains
 {
   public  class DivChain:IExpressionChain
     {

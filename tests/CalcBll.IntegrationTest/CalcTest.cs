@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
-using CalcBll.Abstract;
-using CalcBll.Concrete;
-using CalcBll.Concrete.Chains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StringExpressionCalculator.Abstract;
+using StringExpressionCalculator.Concrete;
+using StringExpressionCalculator.Concrete.Chains;
 
 namespace CalcBll.Tests
 {
-    class MyWriter : IAdapter
+    class MyWriter : IWriter
     {
         public void Write(string message)
         {
@@ -18,12 +18,12 @@ namespace CalcBll.Tests
     [TestClass]
     public class CalcTest
     {
-        private ICalc _calc;
+        private ICalculator _calc;
         private double _epsilon;
         [TestInitialize]
         public void Start()
         {
-            _calc = new Calc(new Parser(new ExpressionBuilder(
+            _calc = new Calculator(new Parser(new ExpressionBuilder(
                 new NumChain(
                     new AddChain(
                         new SubChain(

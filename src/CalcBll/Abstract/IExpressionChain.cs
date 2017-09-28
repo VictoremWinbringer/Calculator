@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CalcBll.Abstract
+﻿namespace StringExpressionCalculator.Abstract
 {
     public interface IExpressionChain
     {

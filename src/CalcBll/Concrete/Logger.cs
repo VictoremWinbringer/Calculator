@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Text;
-using CalcBll.Abstract;
+using StringExpressionCalculator.Abstract;
 
-namespace CalcBll.Concrete
+namespace StringExpressionCalculator.Concrete
 {
    public sealed class Logger : ILogger
     {
-        private readonly IAdapter _adapter;
+        private readonly IWriter _adapter;
 
-        public Logger(IAdapter adapter)
+        public Logger(IWriter adapter)
         {
             _adapter = adapter;
         }

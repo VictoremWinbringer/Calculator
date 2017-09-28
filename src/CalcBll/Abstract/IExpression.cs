@@ -1,4 +1,4 @@
-﻿namespace CalcBll.Abstract
+﻿namespace StringExpressionCalculator.Abstract
 {
     public interface IExpression
     {

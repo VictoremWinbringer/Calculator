@@ -1,8 +1,8 @@
 ﻿using System;
-using CalcBll.Abstract;
-using CalcBll.Concrete.Expressions;
+using StringExpressionCalculator.Abstract;
+using StringExpressionCalculator.Concrete.Expressions;
 
-namespace CalcBll.Concrete.Chains
+namespace StringExpressionCalculator.Concrete.Chains
 {
     public class AddChain : IExpressionChain
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{7E9464B7-D133-4813-83ED-DDD58937F657}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalcBll</RootNamespace>
-    <AssemblyName>CalcBll</AssemblyName>
+    <RootNamespace>StringExpressionCalculator</RootNamespace>
+    <AssemblyName>StringExpressionCalculator</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -41,16 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IAdapter.cs" />
-    <Compile Include="Abstract\ICalc.cs" />
+    <Compile Include="Abstract\IWriter.cs" />
+    <Compile Include="Abstract\ICalculator.cs" />
     <Compile Include="Abstract\IExpression.cs" />
     <Compile Include="Abstract\IExpressionBuilder.cs" />
     <Compile Include="Abstract\IExpressionChain.cs" />
     <Compile Include="Abstract\IExpressionValidator.cs" />
     <Compile Include="Abstract\ILogger.cs" />
     <Compile Include="Abstract\IParser.cs" />
-    <Compile Include="Concrete\Adapter.cs" />
-    <Compile Include="Concrete\Calc.cs" />
+    <Compile Include="Concrete\FileWriter.cs" />
+    <Compile Include="Concrete\Calculator.cs" />
     <Compile Include="Concrete\Chains\ClosingParenthesisChain.cs" />
     <Compile Include="Concrete\Chains\DivChain.cs" />
     <Compile Include="Concrete\Chains\MulChain.cs" />

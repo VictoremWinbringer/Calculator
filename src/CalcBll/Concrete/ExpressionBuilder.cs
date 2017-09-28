@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using CalcBll.Abstract;
+﻿using System.Collections.Generic;
+using StringExpressionCalculator.Abstract;
 
-namespace CalcBll.Concrete
+namespace StringExpressionCalculator.Concrete
 {
     public sealed class ExpressionBuilder : IExpressionBuilder
     {

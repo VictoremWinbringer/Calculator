@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using CalcBll.Abstract;
+using StringExpressionCalculator.Abstract;
 
-namespace CalcBll.Concrete
+namespace StringExpressionCalculator.Concrete
 {
     public sealed class Parser : IParser
     {
-        IExpressionBuilder _builder;
-        IExpressionValidator _validator;
+        private IExpressionBuilder _builder;
+        private readonly IExpressionValidator _validator;
 
         public Parser(IExpressionBuilder builder, IExpressionValidator validator)
         {
