@@ -20,6 +20,7 @@ namespace Calculator.Test
     {
         private ICalculator _calc;
         private double _epsilon;
+
         [TestInitialize]
         public void Start()
         {
@@ -31,14 +32,25 @@ namespace Calculator.Test
                                 new DivChain(
                                     null)))))), new ExpressionValidator())
                 , new Logger(new MyWriter()));
+
             _epsilon = 0.1d;
+        }
+
+        [TestMethod]
+        public void Return_The_Same_Result_For_the_Same_Expressions()
+        {
+            var a = _calc.Calculate("2*2");
+
+            var b = _calc.Calculate("2*2");
+
+            Assert.AreEqual(a, b);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Calculate_Alpha()
         {
-             _calc.Calculate("1a+1");
+            _calc.Calculate("1a+1");
         }
 
         [TestMethod]
@@ -59,14 +71,14 @@ namespace Calculator.Test
         [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotNumberBitweenOperator()
         {
-             _calc.Calculate("1++1");
+            _calc.Calculate("1++1");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Calculate_VrongOrderNotLastNumber()
         {
-             _calc.Calculate("1+1+");
+            _calc.Calculate("1+1+");
         }
 
         [TestMethod]
@@ -115,8 +127,7 @@ namespace Calculator.Test
         {
             var d = _calc.Calculate("23 * 2 + 45 - 24 / 5");
 
-            Assert.IsTrue(Math.Abs(Math.Abs(d) -86.2) < _epsilon);
-
+            Assert.IsTrue(Math.Abs(Math.Abs(d) - 86.2) < _epsilon);
         }
     }
 }

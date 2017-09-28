@@ -24,11 +24,8 @@ namespace StringExpressionCalculator.Concrete
             {
                 _chain.Add(ref priority, e, this);
             }
-            var temp = _root;
 
-            _root = null;
-
-            return temp;
+            return _root;
         }
 
         public void Append(string expression)
@@ -49,6 +46,13 @@ namespace StringExpressionCalculator.Concrete
             {
                 Sort(_root, expression);
             }
+        }
+
+        public void Clear()
+        {
+            _root = null;
+
+            _expressions.Clear();
         }
 
         private void Sort(IExpression root, IExpression value)

@@ -56,12 +56,16 @@ namespace StringExpressionCalculator.Concrete
             var valid = _validator.IsValid(expressions);
 
             if (!valid.Item1)
-                throw new ArgumentException($"Not valid simbol {expressions[valid.Item2]} on index {valid.Item2}");
+                throw new ArgumentException($"Not valid symbol {expressions[valid.Item2]} on index {valid.Item2}");
 
             foreach (var e in expressions)
                 _builder.Append(e);
 
-            return _builder.Build();
+            var exp = _builder.Build();
+
+            _builder.Clear();
+
+            return exp;
         }
     }
 }

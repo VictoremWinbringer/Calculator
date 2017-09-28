@@ -9,23 +9,22 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+            ICalculator calc = new StringExpressionCalculator.Concrete.Calculator(new Parser(new ExpressionBuilder(
+                        new OpeningParenthesisChain(
+                            new ClosingParenthesisChain(
+                                new NumChain(
+                                    new AddChain(
+                                        new SubChain(
+                                            new MulChain(
+                                                new DivChain(
+                                                    null))))))))
+                    , new ExpressionValidator())
+                , new Logger(new ConsoleWriter()));
 
-            Console.WriteLine("Введите выражение. Поддерживаються только -, +, /, *  без знака. В качестве десятичного разделителя используеться точка.");
+            Console.WriteLine("Введите выражение. Поддерживаються только -, +, /, *, (, ), и цифры  без знака. В качестве десятичного разделителя используеться точка.");
 
             while (true)
             {
-                ICalculator calc = new StringExpressionCalculator.Concrete.Calculator(new Parser(new ExpressionBuilder(
-                            new OpeningParenthesisChain(
-                                new ClosingParenthesisChain(
-                                    new NumChain(
-                                        new AddChain(
-                                            new SubChain(
-                                                new MulChain(
-                                                    new DivChain(
-                                                        null))))))))
-                        , new ExpressionValidator())
-                    , new Logger(new ConsoleWriter()));
-
                 string expression = Console.ReadLine();
 
                 try
